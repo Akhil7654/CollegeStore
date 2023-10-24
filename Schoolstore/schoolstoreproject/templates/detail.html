@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Spering</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'scss/bootstrap.css' %}" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'scss/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'scss/responsive.css' %}" rel="stylesheet" />
+</head>
+{% include 'navbar.html' %}
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+          </a>
+
+
+          <div>
+
+          </div>
+
+        </nav>
+      </div>
+
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1">02</li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2">03</li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-5 offset-md-1">
+                  <div class="detail-box">
+                    {% if user.is_authenticated %}
+                    <h1>
+                      WELCOME {{user.username}}
+                    </h1>
+                    {% else %}
+                    <h1>
+                      WELCOME
+                    </h1>
+                    {% endif %}
+                    <p>
+                      We kindly request you to fill the form in order to let us help you.
+                    </p>
+                    <div class="btn-box">
+                      <a href="{% url 'verifications:form' %}" class="btn-1">
+                        Get the Form
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="offset-md-1 col-md-4 img-container">
+                  <div class="img-box">
+                    <img src="{% static 'images/slider-img.png' %}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+  <!-- experience section -->
+
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  {% include 'footer.html' %}
+  <!-- end  footer section -->
+
+
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+
+
+</html>

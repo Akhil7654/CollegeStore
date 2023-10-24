@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Form with Message Box</title>
+    <style>
+    form {
+    height: 500px;
+    width: 400px;
+
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+
+
+        /* Style the message box */
+        #messageBox {
+            display: none;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+
+</head>
+<body style="background:#c1c0c5;">
+
+
+    <form id="myForm">
+        <label for="name">Name:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="name" name="name">
+        <br><br>
+        <label for="age">Age:</label>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;<input type="number" id="age" name="age">
+        <br><br>
+        <label for="gender">Gender:</label>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="gender" name="gender">
+        <br><br>
+        <label for="phno">Phone Number:</label>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="phno" name="phno">
+        <br><br>
+        <label for="mail">Mail ID:</label>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" id="mail" name="mail">
+        <br><br>
+        <label for="address">Address:</label>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="address" name="address">
+        <br><br><br>
+        <div>
+    Department: <select name="subject" id="subject">
+    <option value="" selected="selected">Select Department</option>
+  </select>
+  <br><br>
+  <br>
+Course: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select Department first</option>
+  </select>
+
+
+  <br><br><br>
+    Purpose: <select name="purpose" >
+    <option value="" selected="selected">Select</option>
+    <option>Enquiry</option>
+    <option>Place Order</option>
+    <option>Return</option>
+  </select>
+  <br><br>
+
+
+      <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+<label for="vehicle1">Debit notebook</label><br>
+<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+<label for="vehicle2">Pen</label><br>
+<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+<label for="vehicle3">Paper</label><br>
+<br><br>
+  </div>
+        <button type="submit">Submit</button>
+        <a href="{% url 'verifications:logout' %}">
+            <button type="button" style="margin-left:260px;"> Logout </button>
+        </a>
+
+    <!-- Message box HTML -->
+    <div id="messageBox" style="margin-right:-260px;width:150px;height:80px;">
+        <strong><span id="messageText"></span></strong>
+        <br><br>
+        <button id="messageClose">Home</button>
+    </div>
+
+    <script>
+        // Get form and message box elements
+        const form = document.getElementById("myForm");
+        const messageBox = document.getElementById("messageBox");
+        const messageText = document.getElementById("messageText");
+        const messageClose = document.getElementById("messageClose");
+
+        // Prevent the form from submitting and display a message
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+
+            messageText.textContent = "Proceeded !";
+            messageBox.style.display = "block";
+        });
+
+        // Close the message box
+        messageClose.addEventListener("click", function () {
+             window.location.href = "/";
+        });
+
+        var subjectObject = {
+    "Media Studies": {
+    "BA Jounalism": ["Links", "Images", "Tables", "Lists"],
+  },
+  "Psychology": {
+    "Bsc Pyschology": ["Variables", "Strings", "Arrays"],
+  },
+    "Statistics": {
+    "Bsc Statistics": ["Links", "Images", "Tables", "Lists"],
+    "Msc Statistics": ["Variables", "Strings", "Arrays"],
+    "Phd Statistics": ["Variables", "Strings", "Arrays"],
+  },
+    "Computer Science": {
+    "BCA": ["Links", "Images", "Tables", "Lists"],
+  },
+    "Commerce": {
+    "Bcom Tax": ["Links", "Images", "Tables", "Lists"],
+  },
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+
+}
+
+    </script>
+</body>
+</html>
